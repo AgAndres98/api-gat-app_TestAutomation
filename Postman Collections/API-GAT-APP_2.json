@@ -1127,7 +1127,7 @@
                   "    \"moneda\": \"string\",\r",
                   "    \"estado\": \"string\"\r",
                   "  }\r",
-                  "console.log(pm.response.jsonSchema)\r",
+                  "console.log(pm.response.json())\r",
                   "pm.test('Schema is valid', function() {\r",
                   "    \r",
                   "  pm.response.to.have.jsonSchema(schema);\r",
