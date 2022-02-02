@@ -1121,7 +1121,7 @@
                   "\r",
                   "const schema = {\r",
                   "    \"idCuenta\": 0,\r",
-                  "    \"cbu\": \"string\",\r",
+                  "    \"cbu\": \"strings\",\r",
                   "    \"nombreBanco\": \"string\",\r",
                   "    \"tipoCuenta\": \"string\",\r",
                   "    \"moneda\": \"string\",\r",
