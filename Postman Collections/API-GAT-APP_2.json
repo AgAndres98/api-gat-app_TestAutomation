@@ -1015,7 +1015,7 @@
                 }
               ]
             },
-            "url": "{{url}}/tokens"
+            "url": "{{url}}/token"
           },
           "response": []
         },
