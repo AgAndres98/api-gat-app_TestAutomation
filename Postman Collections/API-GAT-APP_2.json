@@ -1097,7 +1097,7 @@
                   "});\r",
                   "\r",
                   "let jsonDataAssertion = pm.response.json();\r",
-                  "\r",
+                  "console.log(pm.response.body)\r",
                   "pm.test(\"Cuentas obtenidas exitosamente\", function () {\r",
                   "    pm.expect(jsonDataAssertion[0].nombreBanco).not.eql(null || undefined)\r",
                   "});\r",
