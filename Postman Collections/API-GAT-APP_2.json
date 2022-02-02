@@ -1067,7 +1067,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"cbu\": \"0150529001000000506752\",\r\n  \"moneda\": 1,\r\n  \"tipoCuentaBancaria\": 1\r\n}",
+              "raw": "{\r\n  \"cbu\": \"0720765788000035181686\",\r\n  \"moneda\": 1,\r\n  \"tipoCuentaBancaria\": 1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
