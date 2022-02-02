@@ -1336,7 +1336,19 @@
                   "pm.test(\"Cuenta obtenidas exitosamente\", function () {\r",
                   "    pm.expect(jsonDataAssertion.cuentas).not.eql(null || undefined)\r",
                   "});\r",
-                  ""
+                  "\r",
+                  "\r",
+                  "const schema = {\r",
+                  "  \"access_token\": \"string\",\r",
+                  "  \"token_type\": \"string\",\r",
+                  "  \"expires_in\": \"2022-02-02T18:52:32.057Z\",\r",
+                  "  \"refresh_token\": \"string\"\r",
+                  "}\r",
+                  "console.log(pm.response.json())\r",
+                  "pm.test('Schema is valid', function() {\r",
+                  "    \r",
+                  "  pm.response.to.have.jsonSchema(schema);\r",
+                  "});"
                 ],
                 "type": "text/javascript"
               }
