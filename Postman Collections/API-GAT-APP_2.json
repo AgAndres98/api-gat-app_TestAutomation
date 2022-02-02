@@ -1129,6 +1129,7 @@
                   "  }\r",
                   "\r",
                   "pm.test('Schema is valid', function() {\r",
+                  "    log.info(pm.response.jsonSchema)\r",
                   "  pm.response.to.have.jsonSchema(schema);\r",
                   "});"
                 ],
