@@ -1,0 +1,1372 @@
+{
+  "info": {
+    "_postman_id": "a24ae416-69bb-4d35-b725-542f0dfd5f80",
+    "name": "API-GAT-APP_2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Inversiones/trading",
+      "item": [
+        {
+          "name": "Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"token\", jsonData.access_token);\r",
+                  "postman.setEnvironmentVariable(\"refresh-token\", jsonData.refresh_token);\r",
+                  "\r",
+                  "\r",
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Token generado exitosamente\", function () {\r",
+                  "    pm.expect(jsonDataAssertion.access_token).not.eql(null)\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "fa97b969-f0c8-448b-8689-da597c3359e2"
+              }
+            }
+          ],
+          "_postman_id": "10c469f3-1e0f-4aa8-90a0-e3b7375073ee",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Device",
+                "value": "{{device}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "{{usuario}}",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{pass}}",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                }
+              ],
+              "options": {
+                "urlencoded": {}
+              }
+            },
+            "url": "{{url}}/token"
+          },
+          "response": []
+        },
+        {
+          "name": "Operaciones",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "0b128a1b-c2fc-46ee-983c-d224248d1782"
+              }
+            }
+          ],
+          "_postman_id": "980ed863-25a3-498d-b5c0-775ab224dd50",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "{{url}}/operaciones"
+          },
+          "response": []
+        },
+        {
+          "name": "Operaciones/{numeroOperacion}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "f2135d21-2b5a-4def-8d37-8687248a09bf"
+              }
+            }
+          ],
+          "_postman_id": "7e621ea7-f592-4744-9606-1342d3c6277f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "{{url}}/Operaciones/19319396"
+          },
+          "response": []
+        },
+        {
+          "name": "Comprar (tipoOrden -> Precio Mercado)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Operacion generada exitosamente\", function () {\r",
+                  "    pm.expect(jsonDataAssertion.ok).to.be.true\r",
+                  "});\r",
+                  "\r",
+                  "//Para validar la fuente de dispositivos desde la BBDD https://ibb.co/XxTFbw8"
+                ],
+                "type": "text/javascript",
+                "id": "e88b1c5e-6bee-46aa-8870-2d28be0b85f3"
+              }
+            }
+          ],
+          "_postman_id": "b59aae34-61a2-4e7b-ac1b-0b1449dfa1da",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"mercado\": \"BCBA\",\r\n    \"simbolo\": \"GGAL\",\r\n    \"precio\": 190,\r\n    \"validez\": \"2021-12-20T19:33:11.609Z\",\r\n    \"tipoOrden\": \"PrecioMercado\",\r\n    \"plazo\": \"T2\",\r\n    \"monto\":190,\r\n    \"idFuente\": 0,\r\n    \"fuenteToken\": \"string\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/Operar/comprar"
+          },
+          "response": []
+        },
+        {
+          "name": "Comprar (tipoOrden -> Precio Limite)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"numeroOperacionCancelar\", jsonData.numeroOperacion);\r",
+                  "console.log(jsonData.numeroOperacion);\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Operacion generada exitosamente\", function () {\r",
+                  "    pm.expect(jsonDataAssertion.ok).to.be.true\r",
+                  "});\r",
+                  "\r",
+                  "//Para validar la fuente de dispositivos desde la BBDD https://ibb.co/XxTFbw8\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "8a6a7601-214a-45e7-8155-199ccc3b7a13"
+              }
+            }
+          ],
+          "_postman_id": "ff5faad0-21b4-48b9-ac70-19addd9aa058",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"mercado\": \"BCBA\",\r\n  \"simbolo\": \"GGAL\",\r\n  \"cantidad\": 1,\r\n  \"precio\": 190,\r\n  \"validez\": \"2021-12-20T19:33:11.609Z\",\r\n  \"tipoOrden\": \"PrecioLimite\",\r\n  \"plazo\": \"T2\",\r\n  \"idOperador\": 0,\r\n  \"idAsesor\": 0,\r\n  \"idFuente\": 0,\r\n  \"fuenteToken\": \"string\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/Operar/comprar"
+          },
+          "response": []
+        },
+        {
+          "name": "Operaciones/cancelar-operacion",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "be2e269d-50da-4631-ac42-85b3f20ddd70"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "be59a649-71b3-4672-988f-c57ec614fed5"
+              }
+            }
+          ],
+          "_postman_id": "de5ae333-d944-44cb-955f-bbcf482ab199",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"numero\":{{numeroOperacionCancelar}}\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/Operaciones/cancelar-operacion"
+          },
+          "response": []
+        },
+        {
+          "name": "Vender (tipoOrden -> Precio Mercado)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Operacion generada exitosamente\", function () {\r",
+                  "    pm.expect(jsonDataAssertion.ok).to.be.true\r",
+                  "});\r",
+                  "\r",
+                  "//Para validar la fuente de dispositivos desde la BBDD https://ibb.co/XxTFbw8"
+                ],
+                "type": "text/javascript",
+                "id": "39aa9db2-8c72-4c6b-a93c-f2a389877a7f"
+              }
+            }
+          ],
+          "_postman_id": "266533eb-19e7-484c-b04a-78e82ced06e6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"mercado\": \"BCBA\",\r\n  \"simbolo\": \"PAMP\",\r\n  \"cantidad\": 1,\r\n  \"monto\":3000,\r\n  \"validez\": \"2021-12-15T19:33:11.609Z\",\r\n  \"tipoOrden\": \"PrecioMercado\",\r\n  \"plazo\": \"T2\",\r\n  \"idOperador\": 0,\r\n  \"idAsesor\": 0,\r\n  \"idFuente\": 0,\r\n  \"fuenteToken\": \"string\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/Operar/vender"
+          },
+          "response": []
+        },
+        {
+          "name": "Vender (tipoOrden -> Precio Limite)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Operacion generada exitosamente\", function () {\r",
+                  "    pm.expect(jsonDataAssertion.ok).to.be.true\r",
+                  "});\r",
+                  "\r",
+                  "//Para validar la fuente de dispositivos desde la BBDD https://ibb.co/XxTFbw8"
+                ],
+                "type": "text/javascript",
+                "id": "3fda3fe2-a616-44c2-ba4a-2044198efbc0"
+              }
+            }
+          ],
+          "_postman_id": "64d04672-ac94-4ccc-8979-8908e78114dd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"mercado\": \"BCBA\",\r\n  \"simbolo\": \"PAMP\",\r\n  \"monto\": 1,\r\n  \"cantidad\": 1,\r\n  \"precio\": 150,\r\n  \"validez\": \"2021-12-15T19:33:11.609Z\",\r\n  \"tipoOrden\": \"PrecioLimite\",\r\n  \"plazo\": \"T2\",\r\n  \"idOperador\": 0,\r\n  \"idAsesor\": 0,\r\n  \"idFuente\": 0,\r\n  \"fuenteToken\": \"string\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/Operar/vender"
+          },
+          "response": []
+        },
+        {
+          "name": "Operar/totales estimados",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "44ce25e8-e31a-4106-851d-5ba47a9da7bd"
+              }
+            }
+          ],
+          "_postman_id": "902232db-65b5-48d8-8b4e-4bb44ad67c34",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"TipoTransaccion\": \"Venta\",\r\n    \"Mercado\": \"BCBA\",\r\n    \"Simbolo\": \"GGAL\",\r\n    \"Cantidad\": 1,\r\n    \"Monto\": 10.00,\r\n    \"Modalidad\": \"Precio_Mercado\",\r\n    \"Validez\": \"2021-12-14\",\r\n    \"Plazo\": \"T0\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/Operar/totales-estimados"
+          },
+          "response": []
+        },
+        {
+          "name": "Portafolio/{pais}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "ce98f69f-1e80-4d4f-be40-e0ab3c6936cf"
+              }
+            }
+          ],
+          "_postman_id": "fc49b854-53c8-499d-9deb-75426dbad386",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "{{url}}/portafolio/argentina"
+          },
+          "response": []
+        },
+        {
+          "name": "Titulos/{mercado}/{simbolo}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "63fc17e8-877d-4212-83ba-e60ec88b0cb1"
+              }
+            }
+          ],
+          "_postman_id": "a700e236-ceee-44d1-9875-a59c6189e621",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/titulos/BCBA/GGAL",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "titulos",
+                "BCBA",
+                "GGAL"
+              ],
+              "query": [
+                {
+                  "key": "mercado",
+                  "value": "BCBA",
+                  "disabled": true
+                },
+                {
+                  "key": "simbolo",
+                  "value": "GGAL",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Titulos/{instrumento}/{pais}/Todos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "f01d8ca8-9cc3-44ef-b37b-65dc314916da"
+              }
+            }
+          ],
+          "_postman_id": "32102095-78a6-4210-99e0-2de209dacf83",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/titulos/Acciones/Argentina/Todos",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "titulos",
+                "Acciones",
+                "Argentina",
+                "Todos"
+              ],
+              "query": [
+                {
+                  "key": "mercado",
+                  "value": "BCBA",
+                  "disabled": true
+                },
+                {
+                  "key": "simbolo",
+                  "value": "GGAL",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Estado-cuenta",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "8e4fd337-6ade-4df2-b6ed-82d36cdcb26e"
+              }
+            }
+          ],
+          "_postman_id": "c9f7e583-c3a8-452f-8058-e87c454c6002",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "{{url}}/EstadoCuenta/estado-cuenta"
+          },
+          "response": []
+        },
+        {
+          "name": "/Titulos/{mercado}/{simbolo}/CotizacionDetalle",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "aa95f7c4-03b9-4da7-9bfb-bce03315aa7d"
+              }
+            }
+          ],
+          "_postman_id": "be0df363-0a59-4b67-a57c-286f9246d15f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": "{{url}}/titulos/BCBA/ALUA/CotizacionDetalle"
+          },
+          "response": []
+        },
+        {
+          "name": "Titulos/{mercado}/{simbolo}/Cotizacion",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "582f80b7-4f9e-453d-8869-a6a2a99a205b"
+              }
+            }
+          ],
+          "_postman_id": "ad2fef6f-16f2-4dc9-ae82-da842429dc66",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": "{{url}}/titulos/BCBA/ALUA/cotizacion"
+          },
+          "response": []
+        },
+        {
+          "name": "Cotizacion-intradiaria (TEMAS AMBIENTE)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "3c8a70b4-7b95-4fd1-aeac-1222b3f42e9a"
+              }
+            }
+          ],
+          "_postman_id": "6a2fd197-730d-485f-8e80-178e1a26f51a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": "{{url}}/titulos/BCBA/GGAL/cotizacion-intradiaria"
+          },
+          "response": []
+        },
+        {
+          "name": "Cotizacion-serieHistorica",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "9d022435-5eef-419f-9066-16cacb52b7c8"
+              }
+            }
+          ],
+          "_postman_id": "3c61387e-8dfb-46e6-ad4a-d50684354021",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/titulos/cotizacion-seriehistorica?mercado=BCBA&Simbolo=GGAL&Fechadesde=2016-08-05&fechaHasta=2018-05-05&ajustada=0",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "titulos",
+                "cotizacion-seriehistorica"
+              ],
+              "query": [
+                {
+                  "key": "mercado",
+                  "value": "BCBA"
+                },
+                {
+                  "key": "Simbolo",
+                  "value": "GGAL"
+                },
+                {
+                  "key": "Fechadesde",
+                  "value": "2016-08-05"
+                },
+                {
+                  "key": "fechaHasta",
+                  "value": "2018-05-05"
+                },
+                {
+                  "key": "ajustada",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Panel-cotizacion",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "id": "38a08c0a-037b-474a-8a20-5c365f486317"
+              }
+            }
+          ],
+          "_postman_id": "8e7a688f-b492-45a7-98be-70f8cd19c6d3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/Titulos/panel-cotizacion?instrumento=Acciones&panel=merval&pais=Argentina",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "Titulos",
+                "panel-cotizacion"
+              ],
+              "query": [
+                {
+                  "key": "instrumento",
+                  "value": "Acciones"
+                },
+                {
+                  "key": "panel",
+                  "value": "merval"
+                },
+                {
+                  "key": "pais",
+                  "value": "Argentina"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "51ccc16f-43c7-4345-b6d5-2fe74129e0b0"
+    },
+    {
+      "name": "Money",
+      "item": [
+        {
+          "name": "/Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ace4910f-1fd8-4909-bfc5-daff693aa664",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "postman.setEnvironmentVariable(\"token\", jsonData.access_token);\r",
+                  "postman.setEnvironmentVariable(\"refresh-token\", jsonData.refresh_token);\r",
+                  "\r",
+                  "\r",
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Token generado exitosamente\", function () {\r",
+                  "    pm.expect(jsonDataAssertion.access_token).not.eql(null || undefined)\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "2c0227b5-cc14-471b-8cd5-645fb672cb1e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Device",
+                "value": "{{device}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "{{usuario}}",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{pass}}",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                }
+              ],
+              "options": {
+                "urlencoded": {}
+              }
+            },
+            "url": "{{url}}/token"
+          },
+          "response": []
+        },
+        {
+          "name": "/CuentasBancarias",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "de46b060-a6a5-4ada-9114-a567aa7660c2",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "\r",
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Alta de cuenta bancaria exitosa\", function () {\r",
+                  "    pm.expect(jsonDataAssertion.idCuenta).not.eql(null || undefined)\r",
+                  "});\r",
+                  "console.log(jsonDataAssertion.idCuenta)\r",
+                  "console.log(jsonDataAssertion)\r",
+                  "\r",
+                  "postman.setEnvironmentVariable(\"altaCuenta\", jsonDataAssertion.idCuenta);\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "da720d66-72b0-41e0-9465-5b3de8677662",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cbu\": \"0150529001000000506752\",\r\n  \"moneda\": 1,\r\n  \"tipoCuentaBancaria\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{url}}/CuentasBancarias"
+          },
+          "response": []
+        },
+        {
+          "name": "/CuentasBancarias",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6aee2c2d-9fe2-4a4d-ab07-97f3accf0c48",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "\r",
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Cuentas obtenidas exitosamente\", function () {\r",
+                  "    pm.expect(jsonDataAssertion.nombreBanco).not.eql(null || undefined)\r",
+                  "});\r",
+                  "\r",
+                  "var found = false;\r",
+                  "console.log(jsonDataAssertion.length)\r",
+                  "for(var i = 0; i < jsonDataAssertion.length; i++) {\r",
+                  "    //if (jsonDataAssertion[i].idCuenta == pm.variables.get(\"altaCuenta\")) { \r",
+                  "        console.log(jsonDataAssertion[i].idCuenta)\r",
+                  "        console.log(pm.variables.get(\"altaCuenta\"))\r",
+                  "    if (jsonDataAssertion[i].idCuenta == pm.environment.get(\"altaCuenta\")) { \r",
+                  "        found = true;\r",
+                  "        break;\r",
+                  "    }\r",
+                  "}\r",
+                  " \r",
+                  "pm.test(\"Cuenta dada de alta encontrada\", function () {\r",
+                  "    //pm.expect(jsonDataAssertion.to.include(pm.variables.get(\"altaCuenta\")))\r",
+                  "    pm.expect(found).equals(true)\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "55a7ba05-1eea-4755-9885-006c66e009a2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "{{url}}/CuentasBancarias"
+          },
+          "response": []
+        },
+        {
+          "name": "/CuentasBancarias/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "da632a1c-a380-4a10-a4f3-60540b820ab4",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "\r",
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Cuentas obtenidas exitosamente\", function () {\r",
+                  "    pm.expect(jsonDataAssertion.nombreBanco).not.eql(null || undefined)\r",
+                  "});\r",
+                  "\r",
+                  "var found = false;\r",
+                  "console.log(jsonDataAssertion.length)\r",
+                  "for(var i = 0; i < jsonDataAssertion.length; i++) {\r",
+                  "    //if (jsonDataAssertion[i].idCuenta == pm.variables.get(\"altaCuenta\")) { \r",
+                  "        console.log(jsonDataAssertion[i].idCuenta)\r",
+                  "        console.log(pm.variables.get(\"altaCuenta\"))\r",
+                  "    if (jsonDataAssertion[i].idCuenta == pm.environment.get(\"altaCuenta\")) { \r",
+                  "        found = true;\r",
+                  "        break;\r",
+                  "    }\r",
+                  "}\r",
+                  " \r",
+                  "pm.test(\"Cuenta dada de alta encontrada\", function () {\r",
+                  "    //pm.expect(jsonDataAssertion.to.include(pm.variables.get(\"altaCuenta\")))\r",
+                  "    pm.expect(found).equals(true)\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "fc5ef2ce-1d5e-47b5-89fd-4a22824c488b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": "{{url}}/CuentasBancarias/83397"
+          },
+          "response": []
+        },
+        {
+          "name": "/CuentasRemuneradas/Resumen",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a3fba16d-9813-45ad-a2c8-e0b872298a7d",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "\r",
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Cuentas obtenidas exitosamente\", function () {\r",
+                  "    pm.expect(jsonDataAssertion.nombreBanco).not.eql(null || undefined)\r",
+                  "});\r",
+                  "\r",
+                  "var found = false;\r",
+                  "console.log(jsonDataAssertion.length)\r",
+                  "for(var i = 0; i < jsonDataAssertion.length; i++) {\r",
+                  "    //if (jsonDataAssertion[i].idCuenta == pm.variables.get(\"altaCuenta\")) { \r",
+                  "        console.log(jsonDataAssertion[i].idCuenta)\r",
+                  "        console.log(pm.variables.get(\"altaCuenta\"))\r",
+                  "    if (jsonDataAssertion[i].idCuenta == pm.environment.get(\"altaCuenta\")) { \r",
+                  "        found = true;\r",
+                  "        break;\r",
+                  "    }\r",
+                  "}\r",
+                  " \r",
+                  "pm.test(\"Cuenta dada de alta encontrada\", function () {\r",
+                  "    //pm.expect(jsonDataAssertion.to.include(pm.variables.get(\"altaCuenta\")))\r",
+                  "    pm.expect(found).equals(true)\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "5f49af1f-f09d-4886-a9e8-ad11bd7f46db",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "{{url}}/CuentasRemuneradas/Resumen"
+          },
+          "response": []
+        },
+        {
+          "name": "/Movimientos/TieneDeposito",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "cea5a4a1-afc3-49cb-b771-c621b1871397",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "\r",
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "console.log(jsonDataAssertion)\r",
+                  "pm.test(\"Consulta tiene deposito\", function () {\r",
+                  "    pm.expect(jsonDataAssertion).equals(true || false)\r",
+                  "});\r",
+                  "\r",
+                  " "
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "7cad9a65-cb9e-4d19-a345-ebc53775a66e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "{{url}}/Movimientos/TieneDeposito"
+          },
+          "response": []
+        },
+        {
+          "name": "​/EstadoCuenta​/estado-cuenta",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9ca7c039-8838-4aff-a931-45be6f26d4e4",
+                "exec": [
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "var jsonData = JSON.parse(responseBody);\r",
+                  "\r",
+                  "pm.test(\"Tiempo de respuesta menor a 15 segundos\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(15000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonDataAssertion = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Cuenta obtenidas exitosamente\", function () {\r",
+                  "    pm.expect(jsonDataAssertion.cuentas).not.eql(null || undefined)\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "6fe5c8af-27a5-4385-9f52-850525351db5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "{{url}}/EstadoCuenta/estado-cuenta"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "55c45066-c839-43e3-bab9-27173a2f61f2"
+    }
+  ]
+}
