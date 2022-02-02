@@ -1101,6 +1101,7 @@
                   "pm.test(\"Cuentas obtenidas exitosamente\", function () {\r",
                   "    pm.expect(jsonDataAssertion.nombreBanco).not.eql(null)\r",
                   "    pm.expect(jsonDataAssertion.nombreBanco).not.eql(undefined)\r",
+                  "    console.log(jsonDataAssertion.nombreBanco)\r",
                   "});\r",
                   "\r",
                   "var found = false;\r",
