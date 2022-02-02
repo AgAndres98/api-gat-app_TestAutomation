@@ -1100,7 +1100,7 @@
                   "\r",
                   "pm.test(\"Cuentas obtenidas exitosamente\", function () {\r",
                   "    console.log(jsonDataAssertion.nombreBanco)\r",
-                  "    console.log(jsonDataAssertion)\r",
+                  "    console.log(jsonDataAssertion[0])\r",
                   "\r",
                   "\r",
                   "    pm.expect(jsonDataAssertion.nombreBanco).not.eql(null)\r",
