@@ -1219,25 +1219,9 @@
                   "let jsonDataAssertion = pm.response.json();\r",
                   "\r",
                   "pm.test(\"Cuentas obtenidas exitosamente\", function () {\r",
-                  "    pm.expect(jsonDataAssertion.nombreBanco).not.eql(null || undefined)\r",
+                  "    pm.expect(jsonDataAssertion[0].idCliente).not.eql(null || undefined)\r",
                   "});\r",
-                  "\r",
-                  "var found = false;\r",
-                  "console.log(jsonDataAssertion.length)\r",
-                  "for(var i = 0; i < jsonDataAssertion.length; i++) {\r",
-                  "    //if (jsonDataAssertion[i].idCuenta == pm.variables.get(\"altaCuenta\")) { \r",
-                  "        console.log(jsonDataAssertion[i].idCuenta)\r",
-                  "        console.log(pm.variables.get(\"altaCuenta\"))\r",
-                  "    if (jsonDataAssertion[i].idCuenta == pm.environment.get(\"altaCuenta\")) { \r",
-                  "        found = true;\r",
-                  "        break;\r",
-                  "    }\r",
-                  "}\r",
-                  " \r",
-                  "pm.test(\"Cuenta dada de alta encontrada\", function () {\r",
-                  "    //pm.expect(jsonDataAssertion.to.include(pm.variables.get(\"altaCuenta\")))\r",
-                  "    pm.expect(found).equals(true)\r",
-                  "});"
+                  ""
                 ],
                 "type": "text/javascript"
               }
