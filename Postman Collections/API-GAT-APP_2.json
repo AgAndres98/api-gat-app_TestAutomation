@@ -1342,12 +1342,13 @@
                   "  \"access_token\": \"string\",\r",
                   "  \"token_type\": \"string\",\r",
                   "  \"expires_in\": \"2022-02-02T18:52:32.057Z\",\r",
-                  "  \"refresh_tokessn\": \"string\"\r",
+                  "  \"refresh_token\": \"string\"\r",
                   "}\r",
-                  "console.log(pm.response.json())\r",
+                  "const data1 = [true, false];\r",
+                  "const data2 = [true, 123];\r",
+                  "\r",
                   "pm.test('Schema is valid', function() {\r",
-                  "    \r",
-                  "  pm.response.to.have.jsonSchema(schema);\r",
+                  "  pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
                   "});"
                 ],
                 "type": "text/javascript"
