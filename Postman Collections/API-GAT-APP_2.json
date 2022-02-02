@@ -1099,7 +1099,7 @@
                   "let jsonDataAssertion = pm.response.json();\r",
                   "\r",
                   "pm.test(\"Cuentas obtenidas exitosamente\", function () {\r",
-                  "    console.log(jsonDataAssertion)\r",
+                  "    console.log(jsonDataAssertion.nombreBanco)\r",
                   "\r",
                   "    pm.expect(jsonDataAssertion.nombreBanco).not.eql(null)\r",
                   "    pm.expect(jsonDataAssertion.nombreBanco).not.eql(undefined)\r",
