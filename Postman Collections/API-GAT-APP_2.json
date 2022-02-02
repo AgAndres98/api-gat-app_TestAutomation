@@ -1335,18 +1335,6 @@
                   "\r",
                   "pm.test(\"Cuenta obtenidas exitosamente\", function () {\r",
                   "    pm.expect(jsonDataAssertion.cuentas).not.eql(null || undefined)\r",
-                  "});\r",
-                  "\r",
-                  "\r",
-                  "const schema = {\r",
-                  "  \"access_tokenadf\": \"string\",\r",
-                  "  \"token_type\": \"string\",\r",
-                  "  \"expires_in\": \"2022-02-02T18:52:32.057Z\",\r",
-                  "  \"refresh_token\": \"string\"\r",
-                  "}\r",
-                  "\r",
-                  "pm.test('Schema is valid', function() {\r",
-                  "  pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
                   "});"
                 ],
                 "type": "text/javascript"
