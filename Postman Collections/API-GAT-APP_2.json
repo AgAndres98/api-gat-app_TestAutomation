@@ -1119,8 +1119,7 @@
                   "    pm.expect(found).equals(true)\r",
                   "});\r",
                   "\r",
-                  "const schema = [\r",
-                  "  {\r",
+                  "const schema = {\r",
                   "    \"idCuenta\": 0,\r",
                   "    \"cbu\": \"string\",\r",
                   "    \"nombreBanco\": \"string\",\r",
@@ -1128,7 +1127,7 @@
                   "    \"moneda\": \"string\",\r",
                   "    \"estado\": \"string\"\r",
                   "  }\r",
-                  "]\r",
+                  "\r",
                   "pm.test('Schema is valid', function() {\r",
                   "  pm.response.to.have.jsonSchema(schema);\r",
                   "});"
