@@ -1042,8 +1042,6 @@
                   "pm.test(\"Alta de cuenta bancaria\", function () {\r",
                   "    pm.expect(jsonDataAssertion.idCuenta).not.eql(null || undefined)\r",
                   "});\r",
-                  "console.log(jsonDataAssertion.idCuenta)\r",
-                  "console.log(jsonDataAssertion)\r",
                   "\r",
                   "postman.setEnvironmentVariable(\"altaCuenta\", jsonDataAssertion.idCuenta);\r",
                   ""
