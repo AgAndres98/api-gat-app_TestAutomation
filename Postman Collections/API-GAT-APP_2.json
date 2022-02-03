@@ -1192,7 +1192,7 @@
             },
             "method": "DELETE",
             "header": [],
-            "url": "{{url}}/CuentasBancarias/{{altaCuenta}}"
+            "url": "{{url}}/CuentasBancarias/83414"
           },
           "response": []
         },
